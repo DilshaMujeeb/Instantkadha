@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Banner from "./Components/Banner";
+import Popular from "./Components/Popular";
+import NewRealease from "./Components/NewRealease";
+import Continue from "./Components/Continue";
+import Navbar from "./Components/Navbar";
 
 function App() {
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const handleVideoChange = (videoUrl) => {
+    setSelectedVideo(videoUrl);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <section className="login">
+        <div className="home">
+          <div className="div">
+            <Banner videoUrl={selectedVideo} />
+            <Popular onVideoClick={handleVideoChange} />
+            <NewRealease />
+            <Continue />
+            <Navbar />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
